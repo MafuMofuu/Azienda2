@@ -1,0 +1,401 @@
+openapi: 3.0.0
+info:
+  title: Prova Azienda
+  version: 1.0.0
+
+paths:
+ /employee:
+   put:
+      summary: Update an existing Employee
+      description: Update an existing Employee by Id
+      operationId: updateEmployee
+      requestBody:
+        description: Update an existent Employee 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Employee'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Employee'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Employee not found
+        '405':
+          description: Validation exception
+   post:
+      
+      summary: Add a new Employee 
+      description: Add a new Employee 
+      operationId: addEmployee
+      requestBody:
+        description: Create a new Employee
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Employee'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Employee'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '405':
+          description: Invalid input 
+          
+ /employee/{employeeId}:          
+   get:
+      summary: Find Employee by ID
+      description: Returns a single Employee
+      operationId: getEmployeeById
+      parameters:
+        - name: employeeId
+          in: path
+          description: ID of employee to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Employee not found
+   post:
+      summary: Updates a employee  with form data
+      description: ''
+      operationId: updateEmployeeWithForm
+      parameters:
+        - name: employeeId
+          in: path
+          description: ID of employee that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: name
+          in: query
+          description: Name of employee that needs to be updated
+          schema:
+            type: string
+        - name: role
+          in: query
+          description: Role of employee that needs to be updated
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input        
+   delete:
+      summary: Deletes an employee
+      description: delete an employee
+      operationId: deleteEmployee
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: employeeId
+          in: path
+          description: Employee id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Invalid employee value
+ /project: 
+   post:
+      summary: Add a new Project 
+      description: Add a new Project
+      operationId: addProject
+      requestBody:
+        description: Create a new Project
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '405':
+          description: Invalid input 
+ /project/{projectId}:   
+  get:
+      summary: Find Project by ID
+      description: Returns a single Project
+      operationId: getProjectById
+      parameters:
+        - name: projectId
+          in: path
+          description: ID of project to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Employee not found
+  post:
+      summary: Updates a project  with form data
+      description: ''
+      operationId: updateProjectWithForm
+      parameters:
+        - name: projectId
+          in: path
+          description: ID of project that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: projectName
+          in: query
+          description: Name of project that needs to be updated
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input        
+  delete:
+      summary: Deletes a project
+      description: delete a project
+      operationId: deleteProject
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: projectId
+          in: path
+          description: Project id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Invalid project value 
+ /workTime: 
+  post:
+      summary: Add new WorkTime 
+      description: Add a new WorkTime
+      operationId: addWorkTime
+      requestBody:
+        description: Create a new Worktime
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkTime'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WorkTime'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WorkTime'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkTime'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/WorkTime'
+        '405':
+          description: Invalid input 
+ /workTime/{workTimeId}:   
+  get:
+      summary: Find WorkTime by ID
+      description: Returns a single WorkTime
+      operationId: getWorkTimeById
+      parameters:
+        - name: workTimeId
+          in: path
+          description: ID of workTime to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkTime'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/WorkTime'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: WorkTime not found
+  post:
+      summary: Updates a workTime  
+      description: ''
+      operationId: updateWorkTime
+      parameters:
+        - name: workTimeId
+          in: path
+          description: ID of workTime that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: StartTime
+          in: query
+          description: StartTime of project that needs to be updated
+          schema:
+            type: string
+        - name: EndTime
+          in: query
+          description: EndTime of project that needs to be updated
+          schema:
+            type: string
+        - name: ApprovedDate
+          in: query
+          description: ApprovedDate of project that needs to be updated
+          schema:
+            type: string
+            
+      responses:
+        '405':
+          description: Invalid input        
+  delete:
+      summary: Deletes a WorkTime
+      description: delete a workTime
+      operationId: deleteWorkTime
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: workTimeId
+          in: path
+          description: WorkTime id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Invalid workTime value      
+  
+components:
+  schemas:
+    Employee:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        role:
+          type: string
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    WorkTime:
+      type: object
+      properties:
+       id:
+          type: integer
+          format: int64
+       projectId:
+          type: integer
+          format: int64
+       employeeId:
+          type: integer
+          format: int64
+       startTime:
+           type: string
+           format: date-time      
+       endTime:
+           type: string
+           format: date-time
+       approvedBy:
+           type: string
+       approvedDate:
+           type: string
+           description: Start date
+           example: "2017-01-01"
+           format: date
+           pattern: "YYYY-MM-DD"
+           minLength: 0
+           maxLength: 10
+          
